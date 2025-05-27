@@ -1,45 +1,29 @@
 {
-    "items": [
-        {
-            "id": "1",
-            "text": "Novo item"
-        },
-        {
-            "id": "2",
-            "text": "Novo item"
-        },
-        {
-            "id": "3",
-            "text": "Novo item"
-        },
-        {
-            "id": "4",
-            "text": "Novo item"
-        },
-        {
-            "id": "5",
-            "text": "Novo item"
-        },
-        {
-            "id": "6",
-            "text": "Novo item"
-        },
-        {
-            "id": "7",
-            "text": "Novo item"
-        },
-        {
-            "id": "8",
-            "text": "Novo item"
-        },
-        {
-            "id": "9",
-            "text": "Novo item"
-        },
-        {
-            "id": "10",
-            "text": "Novo item"
-        }
-    ],
-    "pessoas": []
+  "items": [
+    {
+      "id": "c561",
+      "text": "Arroz"
+    },
+    {
+      "id": "16fa",
+      "text": "Feijao"
+    },
+    {
+      "id": "a1db",
+      "text": "Macarrao"
+    },
+    {
+      "id": "c02e",
+      "text": "Leite"
+    },
+    {
+      "id": "ada3",
+      "text": "Farinha"
+    },
+    {
+      "id": "34a1",
+      "text": "Pao"
+    }
+  ],
+  "pessoas": []
 }
