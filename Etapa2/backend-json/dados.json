@@ -25,5 +25,11 @@
       "text": "Pao"
     }
   ],
-  "pessoas": []
+  "compras": [
+    {
+      "id": "bcaf",
+      "item": "Leite",
+      "quantidade": 3
+    }
+  ]
 }
