@@ -1,6 +1,7 @@
 import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type TabParamList = {
+    screenOptions: undefined,
     Home: undefined,
     Settings: undefined,
     Register: undefined,
