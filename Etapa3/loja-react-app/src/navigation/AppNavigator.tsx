@@ -5,10 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 import { RootStackParamList, TabParamList } from './types';
-
-// Telas do app - área não logada.
 import HomeScreen from "../screens/HomeScreen";
-// importar depois que implementar: DetailsScreen, SettingsScreen
 import RegisterScreen from "../screens/RegisterScreen";
 import LoginScreen from "../screens/LoginScreen";
 import CatalogScreen from "../screens/catalog/CatalogScreen";
@@ -19,13 +16,21 @@ const Tab = createBottomTabNavigator<TabParamList>();
 function TabNavigator() {
     return (
         <Tab.Navigator
-            screenOptions={({route, navigation}) => ({
-              tabBarIcon: ({ color, focused, size}) => {
-                let iconName;
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ color, focused, size }) => {
+                let iconName: string | undefined;
+
                 if (route.name === "Catalog") {
-                  iconName = focused ? "tags" : "tags";
+                  iconName = "tags";
+                } else if (route.name === "Settings") {
+                  iconName = "cog";
+                } else if (route.name === "Register") {
+                  iconName = "user-plus";
                 }
-                return <FontAwesome name={iconName} size={size} color={color} />
+
+                return iconName ? (
+                    <FontAwesome name={iconName as keyof typeof FontAwesome.glyphMap} size={size} color={color} />
+                  ) : null;
               },
               tabBarActiveTintColor: "red",
               tabBarInactiveTintColor: "grey",
@@ -35,8 +40,8 @@ function TabNavigator() {
             <Tab.Screen 
               name="Catalog"
               component={CatalogScreen}
-              options={{title: 'Menu'}}
-              />
+              options={{ title: 'Menu' }}
+            />
             <Tab.Screen name="Settings" component={HomeScreen} />
             <Tab.Screen name="Register" component={RegisterScreen} />
         </Tab.Navigator>
@@ -59,7 +64,7 @@ function StackNavigator() {
       <AppStack.Screen 
         name="Login"
         component={LoginScreen}
-        options={{ title: "Acessar" }}
+        options={{ title: 'Login' }}
       />
     </AppStack.Navigator>
   );
