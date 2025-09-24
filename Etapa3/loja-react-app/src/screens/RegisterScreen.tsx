@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button} from "react-native";
 
 export default function RegisterScreen({ navigation }: any) {
-    return (
+    return ( 
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
             <Text>Página de Registro</Text>
-            <Button title="voltar" onPress={ () => navigation.goBack() } />
+            <Button title="Voltar" onPress={ () => navigation.goBack() } />
         </View>
     );
 }

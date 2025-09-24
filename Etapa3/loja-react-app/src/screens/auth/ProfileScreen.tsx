@@ -9,7 +9,9 @@ function ProfileScreen({ navigation }: any) {
     const { logout } = useAuth();
     return (
         <View style={[styles.container, {backgroundColor: theme.colors.background}]}>
-            <Text style={{ color: theme.colors.text, marginBottom: theme.spacing(1) }}>Profile Screen</Text>
+            <Text style={{ color: theme.colors.text, marginBottom: theme.spacing(1) }}>
+                Profile Screen
+            </Text>
             <Button title="Alternar Tema" color={theme.colors.primary} onPress={toggleTheme}/>
             <Button title="Ir para Detalhes" onPress={ () => navigation.navigate('Details')} />
             <Button title="Sair" onPress={logout}/>
