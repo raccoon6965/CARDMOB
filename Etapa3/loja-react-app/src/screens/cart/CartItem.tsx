@@ -7,7 +7,7 @@ const CartItem = ({ item }: any) => {
     // @todo implementar o context para persistir dados do carrinho.
     const { addToCart, removeFromCart } = useShop();
 
-    const handleRemove = (item) => {
+    const handleRemove = (item: any) => {
         removeFromCart(item.id);
         console.log('exclui produto');
     }
@@ -28,7 +28,7 @@ const CartItem = ({ item }: any) => {
                         <Text style={styles.buttonText}>+</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => handleRemove()} style={styles.button}>
+                    <TouchableOpacity onPress={() => handleRemove(item)} style={styles.button}>
                         <Text style={styles.buttonText}>Remover</Text>
                     </TouchableOpacity>
                 </View>
