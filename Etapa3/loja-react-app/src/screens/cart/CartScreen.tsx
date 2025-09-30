@@ -18,7 +18,7 @@ const CartScreen = ({ navigation }: any) => {
             quantity: 2,
             price: 8.5,
             name: "Brigadeiro promoção especial",
-            image: "http://10.81.205.50:5000/uploads/brigadeiro-matcha-white.png",
+            image: "http://10.81.205.25:5000/uploads/brigadeiro-matcha-white.png",
         }
     ];
 
