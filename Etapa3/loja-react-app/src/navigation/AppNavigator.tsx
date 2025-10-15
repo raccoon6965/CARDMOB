@@ -10,7 +10,7 @@ import { RootStackParamList, TabParamList } from './types';
 import HomeScreen from "../screens/HomeScreen";
 // importar depois que implementar: DetailsScreen, SettingsScreen
 import RegisterScreen from "../screens/RegisterScreen";
-import LoginScreen from "../screens/LoginScreen";
+import LoginScreen from "../screens/RegisterScreen";
 import CatalogScreen from "../screens/catalog/CatalogScreen";
 import CartScreen from "../screens/cart/CartScreen";
 
@@ -46,6 +46,10 @@ function TabNavigator() {
               component={CartScreen}
               options={{title: 'Seu Carrinho'}}
             />
+            <Tab.Screen 
+              name=""
+              component={}
+              />
             <Tab.Screen name="Settings" component={HomeScreen} />
             <Tab.Screen name="Register" component={RegisterScreen} />
         </Tab.Navigator>
