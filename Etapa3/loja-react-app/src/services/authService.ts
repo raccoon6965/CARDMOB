@@ -39,7 +39,7 @@ export async function requestRegister(name: string, email: string, password: str
     console.log(apiUrl); // alterado
     try {
         // alterado 
-        const response = await fetch(`${apiUrl}/api/users/login`, { // modifiquei o endpoint
+        const response = await fetch(`${apiUrl}/api/users/register`, { // modifiquei o endpoint
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

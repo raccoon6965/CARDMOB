@@ -1,48 +1,26 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AuthStackParamList, AuthTabParamList } from './types';
+import { AuthStackParamList } from './types';
 
-// Telas do app - área logada.
-import HomeScreen from "../screens/HomeScreen";
-// importar depois que implementar: DetailsScreen, SettingsScreen
-import ProfileScreen from "../screens/auth/ProfileScreen";
+// Telas de autenticação
+import LoginScreen from "../screens/LoginScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
-const Tab = createBottomTabNavigator<AuthTabParamList>();
-
-function AuthTabNavigator() {
-    return (
-        <Tab.Navigator>
-            <Tab.Screen
-              name="Home"
-              component={ProfileScreen}
-              options={{ title: 'Área Logada' }}
-            />
-            <Tab.Screen name="Settings" component={HomeScreen} />
-        </Tab.Navigator>
-    );
-}
-
-function AuthStackNavigator() {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Tabs"
-        component={AuthTabNavigator}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="Details"
-        component={HomeScreen}
-        options={{ title: 'Detalhes' }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 export default function AuthNavigator() {
   return (
-    <AuthStackNavigator />
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ title: 'Login' }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={RegisterScreen}
+        options={{ title: 'Cadastro' }}
+      />
+    </Stack.Navigator>
   );
 };

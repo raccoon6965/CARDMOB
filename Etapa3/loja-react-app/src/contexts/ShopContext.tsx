@@ -2,11 +2,11 @@ import React, { createContext, useContext, useState } from "react";
 
 type ShopContextType = {
     cartItems: any[];
-    addToCart: (item: any) => Promise<void>;
-    removeFromCart: (itemId: number) => Promise<void>;
+    addToCart: (item: any, quantity?: number) => void;
+    removeFromCart: (itemId: number) => void;
     getTotalPrice: () => number;
     clearCart: () => void;
-    lastOrderInfo: () => void;
+    lastOrderInfo: () => any[];
 };
 
 export const ShopContext = createContext<ShopContextType>({} as ShopContextType);
@@ -15,7 +15,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode}> = ({ children}
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [orderInfo, setOrderInfo] = useState<any[]>([]);
 
-    const addToCart = async (item: any, quantity: number = 1) => {
+    const addToCart = (item: any, quantity: number = 1) => {
         setCartItems(prevItems => {
                 const existingIndex = prevItems.findIndex(
                     cartItem => cartItem.id === item.id
@@ -37,7 +37,7 @@ export const ShopProvider: React.FC<{ children: React.ReactNode}> = ({ children}
 
     const removeFromCart = (itemId: number) => {
         setCartItems((prevItems) => 
-            prevItems.filter(item => item.id !== item)
+            prevItems.filter(item => item.id !== itemId)
         );
     }
 
@@ -50,11 +50,11 @@ export const ShopProvider: React.FC<{ children: React.ReactNode}> = ({ children}
     }
 
     const lastOrderInfo = () => {
-        return (orderInfo);
+        return orderInfo;
     }
     return (
         <ShopContext
-            value={ { cartItems, addToCart, removeFromCart, getTotalPrice, clearCart, orderInfo, lastOrderInfo } }
+            value={ { cartItems, addToCart, removeFromCart, getTotalPrice, clearCart, lastOrderInfo } }
         >
             {children}
         </ShopContext>

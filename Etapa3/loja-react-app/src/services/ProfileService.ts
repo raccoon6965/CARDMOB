@@ -2,17 +2,21 @@ import Constants from "expo-constants";
 
 const { apiUrl } = Constants.expoConfig?.extra ||  {};
 
-export async function requestProfileById(id: number): Promise<[]> {
+export async function requestProfile(token: string): Promise<any> {
     try {
-        const response = await fetch(`${apiUrl}/api/users/${id}`);
-        let data = response.json();
+        const response = await fetch(`${apiUrl}/api/users/profile`, {
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
+        });
+        let data = await response.json();
         if (data.image == null) {
             data.image = `${apiUrl}/uploads/placeholder.png`;
         }
-        return Promise.resolve(data);
+        return data;
     } 
     catch (error) {
         console.log(error);
-        return Promise.reject(error);
+        return Promise.reject('Erro ao obter perfil');
     }
 }

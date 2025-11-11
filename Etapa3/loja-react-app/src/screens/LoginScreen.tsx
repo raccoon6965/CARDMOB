@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet, Text, SafeAreaView} from "react-native";
 
 import { requestLogin } from "../services/authService";
@@ -16,7 +16,7 @@ export default function LoginScreen({ navigation }: any) {
             const token = await requestLogin(email, password);
             login(token);
             console.log('Login ok');
-        } catch (err: any) {
+        } catch (err) {
             setError(err);
         }
     }

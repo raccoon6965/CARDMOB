@@ -4,19 +4,19 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
-import { RootStackParamList, TabParamList } from './types';
+import { AppStackParamList, AppTabParamList } from './types';
 
-// Telas do app - área não logada.
+// Telas do app - área logada.
 import HomeScreen from "../screens/HomeScreen";
 // importar depois que implementar: DetailsScreen, SettingsScreen
-import RegisterScreen from "../screens/RegisterScreen";
-import LoginScreen from "../screens/LoginScreen";
+// import RegisterScreen from "../screens/RegisterScreen";
+// import LoginScreen from "../screens/LoginScreen";
 import CatalogScreen from "../screens/catalog/CatalogScreen";
 import CartScreen from "../screens/cart/CartScreen";
 import CheckoutScreen from "../screens/cart/CheckoutScreen";
 
-const AppStack = createNativeStackNavigator<RootStackParamList>();
-const Tab = createBottomTabNavigator<TabParamList>();
+const AppStack = createNativeStackNavigator<AppStackParamList>();
+const Tab = createBottomTabNavigator<AppTabParamList>();
 
 function TabNavigator() {
     return (
@@ -48,11 +48,6 @@ function TabNavigator() {
               options={{title: 'Seu Carrinho', headerShown: true}}
             />
             <Tab.Screen name="Settings" component={HomeScreen} />
-            <Tab.Screen
-              name="Register"
-              component={RegisterScreen}
-              options={{title: "Cadastrar", headerShown: true}} // novo
-            />
         </Tab.Navigator>
     );
 }
@@ -70,11 +65,7 @@ function StackNavigator() {
         component={HomeScreen}
         options={{ title: 'Detalhes' }}
       />
-      <AppStack.Screen 
-        name="Login"
-        component={LoginScreen}
-        options={{ title: "Acessar" }}
-      />
+
       <AppStack.Screen 
         name="Checkout"
         component={CheckoutScreen}

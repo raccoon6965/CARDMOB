@@ -4,7 +4,7 @@ import { View, TextInput, Button, StyleSheet, Text, SafeAreaView} from "react-na
 import { requestRegister } from "../services/authService"; // modificado
 // import { useAuth } from "../contexts/AuthContext";
 
-export default function LoginScreen({ navigation }: any) {
+export default function RegisterScreen({ navigation }: any) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,8 +17,8 @@ export default function LoginScreen({ navigation }: any) {
             const token = await requestRegister(name, email, password); // password
             // login(token);
             console.log('Cadastro ok');
-            navigation.navigate('');
-        } catch (err: any) {
+            navigation.navigate('Login');
+        } catch (err) {
             setError(err);
         }
     }

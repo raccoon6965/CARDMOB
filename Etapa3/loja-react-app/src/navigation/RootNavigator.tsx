@@ -20,7 +20,7 @@ export default function RootNavigator() {
 
   return (
     <NavigationContainer>
-      { user ? <AuthNavigator /> : <AppNavigator /> }
+      { user ? <AppNavigator /> : <AuthNavigator /> }
     </NavigationContainer>
   );
 };
