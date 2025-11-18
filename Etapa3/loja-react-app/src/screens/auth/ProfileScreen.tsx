@@ -4,21 +4,21 @@ import { View, Text, Button, StyleSheet, Image } from "react-native"; // modific
 import { useTheme } from '../../contexts/ThemeContext';
 import { useAuth } from '../../contexts/AuthContext';
 
-import { requestProfile } from "../../services/ProfileService"; // novo 
+import { requestProfileById } from "../../services/profileService"; // novo 
 
 function ProfileScreen({ navigation }: any) {
     const { theme, toggleTheme } = useTheme();
-    const { logout, user: authUser } = useAuth();
-    const [user, setUser] = useState<any>({}); // novo
+    const { logout, userData } = useAuth();
+    const [user, setUser] = useState({}); // novo
 
     // novo
     useEffect(() => {
         const fetchProfile = async () => {
-            if (!authUser?.token) return;
             try {
-                const profile = await requestProfile(authUser.token);
-                console.log(profile);
-                setUser(profile);
+                console.log(userData); // novo
+                const user = await requestProfileById(1);
+                console.log(user);
+                setUser(user);
                 console.log('Carregou o usuário!');
             }
             catch (error) {
