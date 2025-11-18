@@ -1,26 +1,60 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { AuthStackParamList } from './types';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AuthStackParamList, AuthTabParamList } from './types';
 
-// Telas de autenticação
-import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+// Telas do app - área logada.
+import HomeScreen from "../screens/HomeScreen";
+// importar depois que implementar: DetailsScreen, SettingsScreen
+import ProfileScreen from "../screens/auth/ProfileScreen";
+import CheckoutScreen from "../screens/cart/CheckoutScreen";
+import OrderInfoScreen from "../screens/cart/OrderInfoScreen";
 
 const Stack = createNativeStackNavigator<AuthStackParamList>();
+const Tab = createBottomTabNavigator<AuthTabParamList>();
 
-export default function AuthNavigator() {
+function AuthTabNavigator() {
+    return (
+        <Tab.Navigator>
+            <Tab.Screen
+              name="Home"
+              component={ProfileScreen}
+              options={{ title: 'Área Logada' }}
+            />
+            <Tab.Screen name="Settings" component={HomeScreen} />
+        </Tab.Navigator>
+    );
+}
+
+function AuthStackNavigator() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ title: 'Login' }}
+        name="Tabs"
+        component={AuthTabNavigator}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Register"
-        component={RegisterScreen}
-        options={{ title: 'Cadastro' }}
+        name="Details"
+        component={HomeScreen}
+        options={{ title: 'Detalhes' }}
+      />
+      <Stack.Screen 
+        name="Checkout"
+        component={CheckoutScreen}
+        options={{title: 'Concluir pedido'}}
+      />
+      <Stack.Screen 
+        name="OrderInfo"
+        component={OrderInfoScreen}
+        options={{title: 'Resumo do pedido'}}
       />
     </Stack.Navigator>
+  );
+}
+
+export default function AuthNavigator() {
+  return (
+    <AuthStackNavigator />
   );
 };
