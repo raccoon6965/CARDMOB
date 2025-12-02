@@ -8,13 +8,18 @@ type AuthContextType = {
     login: (token: string) => Promise<void>;
     logout: () => Promise<void>;
     loading: boolean;
-    getUserDataFromToken: (token: string | null) => Promise<any[]>; // novo
-    userData: Promise<any[]>; // novo
     userData: any[]; // correção
 };
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
 
-@@ -24,36 +23,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    // Lógica do context provider.
+    const [user, setUser] = useState<{ token: string } | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState<any[]>([]); // novo
+
+    useEffect( () => {
+        const loadUser = async () => {
             const token = await AsyncStorage.getItem('token');
             if (token) {
                 setUser({ token });
@@ -24,7 +29,6 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
             setLoading(false);
         };
         loadUser();
-        getUserDataFromToken(); // novo
     }, []);
 
     const login = async (token: string) => {
@@ -37,25 +41,15 @@ const AuthContext = createContext<AuthContextType>({} as AuthContextType);
     const logout = async () => {
         await AsyncStorage.removeItem('token');
         setUser(null);
-    }
-
-    // novo callback.
-    const getUserDataFromToken = async () => {
-        const token = await AsyncStorage.getItem('token');
-        const tokenData = getTokenData(token);
-        setUserData(tokenData);
         setUserData([]);
     }
 
     return (
-        <AuthContext 
         // correção
         <AuthContext.Provider
             value={{ user, login, logout, loading, userData }}
-        >
         > 
             {children}
-        </AuthContext>
         </AuthContext.Provider>
     );
 };
