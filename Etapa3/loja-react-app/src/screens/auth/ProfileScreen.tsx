@@ -17,6 +17,7 @@ function ProfileScreen({ navigation }: any) {
             try {
                 console.log(userData); // novo
                 const user = await requestProfileById(1);
+                const user = await requestProfileById(userData?.id); // correção
                 console.log(user);
                 setUser(user);
                 console.log('Carregou o usuário!');
